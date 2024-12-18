@@ -18,6 +18,7 @@ import com.manonssharedkitchen.cloudhours.model.Record;
 public class CsvParser {
     static List<Record> parseBrivoReport(String fileName)
             throws IOException {
+        List<Record> records = new ArrayList<>();
         try (ICsvBeanReader beanReader = new CsvBeanReader(new StringReader(fileName),
                 CsvPreference.STANDARD_PREFERENCE)) {
             // the header elements are used to map the values to the bean
@@ -39,19 +40,17 @@ public class CsvParser {
             for (int i = 0; i < 8; i++) {
                 beanReader.read(Record.class, fakeHeader, fakeProcessor);
             }
-            List<Record> records = new ArrayList<>();
             Record record;
             while ((record = beanReader.read(Record.class, headers, processors)) != null) {
                 records.add(record);
             }
-            return records;
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (SuperCsvConstraintViolationException e) {
             System.out.println("Unable to process line: " + e.toString());
             System.out.println("");
         }
-        return null;
+        return records;
     }
 
     private static CellProcessor[] getProcessors() {
