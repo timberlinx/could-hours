@@ -1,4 +1,4 @@
-package com.manonssharedkitchen.cloud_hours;
+package com.manonssharedkitchen.cloudhours;
 
 import java.util.Arrays;
 

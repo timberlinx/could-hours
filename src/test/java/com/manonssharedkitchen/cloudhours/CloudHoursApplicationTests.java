@@ -1,4 +1,4 @@
-package com.manonssharedkitchen.cloud_hours;
+package com.manonssharedkitchen.cloudhours;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
