@@ -4,8 +4,10 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "AccessEvents")
 public class AccessEvent {
     public enum Site {
         RESEARCH_8309;
