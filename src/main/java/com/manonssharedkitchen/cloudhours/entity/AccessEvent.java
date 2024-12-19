@@ -11,13 +11,13 @@ import jakarta.persistence.Table;
 public class AccessEvent {
     public enum Site {
         SITE_UNSPECIFIED,
-        RESEARCH_8309
+        RESEARCH_8309;
     }
 
     public enum EventType {
         ENUM_TYPE_UNSPECIFIED,
         ENTRY,
-        EXIT
+        EXIT;
     }
 
     @Id
