@@ -10,10 +10,12 @@ import jakarta.persistence.Table;
 @Table(name = "AccessEvents")
 public class AccessEvent {
     public enum Site {
-        RESEARCH_8309;
+        SITE_UNSPECIFIED,
+        RESEARCH_8309
     }
 
     public enum EventType {
+        ENUM_TYPE_UNSPECIFIED,
         ENTRY,
         EXIT
     }
