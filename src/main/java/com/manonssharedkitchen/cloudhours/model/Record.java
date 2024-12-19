@@ -1,61 +1,66 @@
 package com.manonssharedkitchen.cloudhours.model;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Record {
     private static final Pattern p = Pattern.compile("^User Entry: (.+)");
-    private String Date;
-    private String Event;
-    private String Credential;
+    private String date;
+    private String fullName;
+    private String credential;
     // While Site is unused, it needs to be present for ICsvBean to work properly
     @SuppressWarnings("unused")
-    private String Site;
-    private String Door;
+    private String site;
+    private String door;
 
     public Record() {
     }
 
     // Setters
     public void setDate(String date) {
-        Date = date;
+        this.date = date;
     }
 
     public void setEvent(String event) {
         Matcher m = p.matcher(event);
         if (m.find()) {
-            Event = m.group(1);
+            fullName = m.group(1);
             return;
         }
-        Event = null;
+        fullName = null;
     }
 
     public void setCredential(String credential) {
-        Credential = credential;
+        this.credential = credential;
     }
 
     public void setSite(String site) {
-        Site = site;
+        this.site = site;
     }
 
     public void setDoor(String door) {
-        Door = door;
+        this.door = door;
     }
 
     // Getters
-    String getFullName() {
-        return Event;
+    public String getFullName() {
+        return fullName;
     }
 
-    String getDate() {
-        return Date;
+    public String getDate() {
+        return date;
     }
 
-    String getDoor() {
-        return Door;
+    public String getDoor() {
+        return door;
     }
 
-    String getCredential() {
-        return Credential;
+    public String getCredential() {
+        return credential;
+    }
+
+    public int getRecordId() {
+        return Objects.hash(date, fullName, credential, site, door);
     }
 }

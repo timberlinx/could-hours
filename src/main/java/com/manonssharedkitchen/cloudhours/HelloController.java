@@ -8,13 +8,18 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
 
+import com.manonssharedkitchen.cloudhours.entity.AccessEvent;
 import com.manonssharedkitchen.cloudhours.model.Record;
+import com.manonssharedkitchen.cloudhours.service.AccessEventService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 
 @RestController
 public class HelloController {
+	@Autowired AccessEventService accessEventService;
 
 	@GetMapping("/")
 	public String index() {
@@ -34,7 +39,11 @@ public class HelloController {
 
 				try {
 					List<Record> records = CsvParser.parseBrivoReport(decodedContent);
-					System.out.println(String.format("Found %d records in brivo report", records.size()));
+					for (Record record : records) {
+						accessEventService.saveAccessEvent(record);
+					}
+					List<AccessEvent> accessEvents = accessEventService.getAllAccessEvents();
+					System.out.println(String.format("Found %d events in database", accessEvents.size()));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
