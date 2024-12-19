@@ -15,7 +15,7 @@ public class AccessEvent {
     }
 
     public enum EventType {
-        ENUM_TYPE_UNSPECIFIED,
+        EVENT_TYPE_UNSPECIFIED,
         ENTRY,
         EXIT;
     }
