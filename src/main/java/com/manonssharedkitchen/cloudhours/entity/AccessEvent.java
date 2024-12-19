@@ -3,6 +3,7 @@ package com.manonssharedkitchen.cloudhours.entity;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class AccessEvent {
@@ -15,6 +16,7 @@ public class AccessEvent {
         EXIT
     }
 
+    @Id
     private int accessEventId;
     private LocalDateTime timestamp;
     private Site site;
